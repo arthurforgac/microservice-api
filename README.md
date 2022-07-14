@@ -25,8 +25,12 @@ for accessing the admin dashboard,
 
 > /api/posts
 
-for retrieving a list of all the posts from the database with a GET request, or creating a new post with a POST request, and
+for retrieving a list of all the posts from the database with a GET request, or creating a new post with a POST request,
 
-> /api/[ID]
+> /api/posts/[ID]
 
-which retrieves the details of a specific post with the given ID with a GET request, edits the post at that ID with a PUT request, or deletes the selected post from the database with a DELETE request.
+which retrieves the details of a specific post with the given ID with a GET request, edits the post at that ID with a PUT request, or deletes the selected post from the database with a DELETE request, and
+
+> /api/user/[USER-ID]
+
+which retrieves a list of all the posts created by the user with the selected user ID.
