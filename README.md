@@ -1,2 +1,2 @@
-# microservice
+# Simple microservice for managing posts
  
