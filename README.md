@@ -27,6 +27,6 @@ for accessing the admin dashboard,
 
 for retrieving a list of all the posts from the database with a GET request, or creating a new post with a POST request, and
 
-> /api/<id>
+> /api/[ID]
 
 which retrieves the details of a specific post with the given ID with a GET request, edits the post at that ID with a PUT request, or deletes the selected post from the database with a DELETE request.
