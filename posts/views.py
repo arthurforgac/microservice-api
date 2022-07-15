@@ -52,6 +52,9 @@ class PostViewSet(viewsets.ViewSet):
 
 
     def update(self, request, pk=None):  # /api/posts/<str:id>  PUT
+        ids = [post.id for post in Post.objects.all()]
+        if int(pk) not in ids:
+            return Response(status=status.HTTP_204_NO_CONTENT)
         post = Post.objects.get(id=pk)
         serializer = PostSerializer(instance=post, data=request.data)
         serializer.is_valid(raise_exception=True)

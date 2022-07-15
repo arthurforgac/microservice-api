@@ -1,0 +1,168 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample microservice, which provides basic CRUD operations for management of posts within a database."
+  version: "1.0.6"
+  title: "Postboard microservice"
+host: "localhost:8000"
+basePath: "/api"
+tags:
+- name: "posts"
+  description: "Basic functionalities for creating, retrieving, updating and deleting posts within the database"
+- name: "user"
+  description: "Searching through the database by UserID"
+schemes:
+- "http"
+paths:
+  /posts:
+    post:
+      tags:
+      - "posts"
+      summary: "Creates a new post within the database"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "title"
+        in: "formData"
+        description: "Title of the new post"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "formData"
+        description: "Body of the new post"
+        required: false
+        type: "string"
+      - name: "userid"
+        in: "formData"
+        description: "UserID of the user"
+        required: true
+      responses:
+        201:
+          description: "successful operation"
+        403:
+          description: "you must enter a valid userid"
+    get:
+      tags:
+        - "posts"
+      summary: "Retrieves all the posts in the database"
+      description: ""
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "successful operation"
+  /posts/{id}:
+    get:
+      tags:
+      - "posts"
+      summary: "Retrieve a post with a specific ID"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "The ID of a post"
+        required: true
+      responses:
+        200:
+          description: "successful operation"
+        204:
+          description: "no such post"
+    put:
+      tags:
+      - "posts"
+      summary: "Update an existing post"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "Post object that needs to be edited"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "formData"
+        name: "userid"
+        description: "UserID that needs to be changed"
+        required: true
+        type: "string"
+      - in: "formData"
+        name: "id"
+        description: "Post object that needs to be edited"
+        required: true
+        type: "string"
+      - in: "formData"
+        name: "title"
+        description: "Title that needs to be edited"
+        required: true
+        type: "string"
+      - in: "formData"
+        name: "body"
+        description: "Body that needs to be edited"
+        required: false
+        type: "string"
+      responses:
+        202:
+          description: "successful operation"
+        204:
+          description: "no such id"
+    delete:
+      tags:
+        - "posts"
+      summary: "Delete an existing post"
+      description: ""
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "Post object that needs to be deleted"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "operation successful"
+  /user/{id}:
+    tags:
+      - "user"
+    summary: "Retrieves all of the posts made by a selected user"
+    description: ""
+    consumes:
+      - "application/json"
+    produces:
+      - "application/json"
+    parameters:
+      - in: "path"
+        name: "userid"
+        description: "UserID of the selected user"
+        required: true
+        type: "integer"
+    responses:
+      200:
+        description: "operation successful"
+
+definitions:
+  Post:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      body:
+        type: "string"
+      userid:
+        type: "string"
